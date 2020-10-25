@@ -19,7 +19,7 @@ For other platforms, Precompiled binaries for released versions are available in
 Or `go get`.
 
 ```sh
-$ go get github.com/genkiroid/cert/...
+$ go get github.com/sysophost/cert/...
 ```
 
 ## Usage
