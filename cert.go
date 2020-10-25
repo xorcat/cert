@@ -96,6 +96,7 @@ func SplitHostPort(hostport string) (string, string, error) {
 type Cert struct {
 	DomainName string   `json:"domainName"`
 	IP         string   `json:"ip"`
+	Port       string   `json:"port"`
 	Issuer     string   `json:"issuer"`
 	CommonName string   `json:"commonName"`
 	SANs       []string `json:"sans"`
@@ -173,6 +174,7 @@ func NewCert(hostport string) *Cert {
 	return &Cert{
 		DomainName: host,
 		IP:         ip,
+		Port:		port,
 		Issuer:     cert.Issuer.CommonName,
 		CommonName: cert.Subject.CommonName,
 		SANs:       cert.DNSNames,
@@ -231,6 +233,7 @@ func NewCerts(s []string) (Certs, error) {
 
 const defaultTempl = `{{range .}}DomainName: {{.DomainName}}
 IP:         {{.IP}}
+Port:       {{.Port}}
 Issuer:     {{.Issuer}}
 NotBefore:  {{.NotBefore}}
 NotAfter:   {{.NotAfter}}
@@ -256,9 +259,9 @@ func (certs Certs) String() string {
 	return b.String()
 }
 
-const markdownTempl = `DomainName | IP | Issuer | NotBefore | NotAfter | CN | SANs | Error
+const markdownTempl = `DomainName | IP | Port | Issuer | NotBefore | NotAfter | CN | SANs | Error
 --- | --- | --- | --- | --- | --- | --- | ---
-{{range .}}{{.DomainName}} | {{.IP}} | {{.Issuer}} | {{.NotBefore}} | {{.NotAfter}} | {{.CommonName}} | {{range .SANs}}{{.}}<br/>{{end}} | {{.Error}}
+{{range .}}{{.DomainName}} | {{.IP}} | {{.Port}} | {{.Issuer}} | {{.NotBefore}} | {{.NotAfter}} | {{.CommonName}} | {{range .SANs}}{{.}}<br/>{{end}} | {{.Error}}
 {{end}}
 `
 

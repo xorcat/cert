@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/genkiroid/cert"
+	"github.com/sysophost/cert"
 )
 
 var version = ""
