@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/sysophost/cert"
+	"github.com/xorcat/cert"
 )
 
 var version = ""

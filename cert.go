@@ -99,6 +99,7 @@ type Cert struct {
 	Port       string   `json:"port"`
 	Issuer     string   `json:"issuer"`
 	CommonName string   `json:"commonName"`
+	OU         string   `json:"ou"`
 	SANs       []string `json:"sans"`
 	NotBefore  string   `json:"notBefore"`
 	NotAfter   string   `json:"notAfter"`
@@ -177,6 +178,7 @@ func NewCert(hostport string) *Cert {
 		Port:		port,
 		Issuer:     cert.Issuer.CommonName,
 		CommonName: cert.Subject.CommonName,
+        OU:         cert.Subject.OrganizationalUnit[0],
 		SANs:       cert.DNSNames,
 		NotBefore:  cert.NotBefore.In(loc).String(),
 		NotAfter:   cert.NotAfter.In(loc).String(),
@@ -238,6 +240,7 @@ Issuer:     {{.Issuer}}
 NotBefore:  {{.NotBefore}}
 NotAfter:   {{.NotAfter}}
 CommonName: {{.CommonName}}
+OU: {{.OU}}
 SANs:       {{.SANs}}
 Error:      {{.Error}}
 
