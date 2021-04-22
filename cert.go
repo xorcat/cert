@@ -240,7 +240,7 @@ Issuer:     {{.Issuer}}
 NotBefore:  {{.NotBefore}}
 NotAfter:   {{.NotAfter}}
 CommonName: {{.CommonName}}
-OU: {{.OU}}
+OU:         {{.OU}}
 SANs:       {{.SANs}}
 Error:      {{.Error}}
 
@@ -262,9 +262,9 @@ func (certs Certs) String() string {
 	return b.String()
 }
 
-const markdownTempl = `DomainName | IP | Port | Issuer | NotBefore | NotAfter | CN | SANs | Error
+const markdownTempl = `DomainName | IP | Port | Issuer | NotBefore | NotAfter | CN | OU | SANs | Error
 --- | --- | --- | --- | --- | --- | --- | ---
-{{range .}}{{.DomainName}} | {{.IP}} | {{.Port}} | {{.Issuer}} | {{.NotBefore}} | {{.NotAfter}} | {{.CommonName}} | {{range .SANs}}{{.}}<br/>{{end}} | {{.Error}}
+{{range .}}{{.DomainName}} | {{.IP}} | {{.Port}} | {{.Issuer}} | {{.NotBefore}} | {{.NotAfter}} | {{.CommonName}} | {{.OU}} | {{range .SANs}}{{.}}<br/>{{end}} | {{.Error}}
 {{end}}
 `
 
